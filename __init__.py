@@ -172,10 +172,6 @@ def apiBooks():
     apiSearchQueryAuthor = request.args.get('api_search_query_author')
     data = { " books": [], "stringifiedBooks": ""}
 
-    print("1: ",(apiSearchQuery))
-    print("2: ",apiSearchQueryTitle)
-    print("3: ",apiSearchQueryAuthor)
-
     if apiSearchQueryAuthor:
         response = requests.get("https://www.googleapis.com/books/v1/volumes?q=inauthor:" + apiSearchQueryAuthor)
         responseDict = json.loads(response.text)
