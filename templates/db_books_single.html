@@ -1,0 +1,35 @@
+<html>
+   <body>
+      <form>
+         
+         <h3>Pojedynczy istniejący wpis:</h3>
+         Wróć do strony głównej: <a href="/"> TU </a><br><br>
+
+         ID książki do edycji<br>
+         <input type = "text" name = "id" value={{ book.id }} /></br></br>
+         
+         Podaj nowe dane książki:</br></br>
+
+         Tytuł<br>
+         <input type = "text" name = "title" value={{ book.title }} /></br>
+         
+         Autor<br>
+         <input type = "text" name = "author" value={{ book.author }} /></br>
+
+         Data publikacji<br>
+         <input type = "date" name = "publication_date" value={{ book.publication_date }} /></br>
+         
+         ISBN<br>
+         <input type = "text" name = "ISBN" value={{ book.ISBN }} /><br>
+         
+         Liczba stron<br>
+         <input type = "text" name = "pages" value={{ book.pages }} /><br>
+        
+         Link do okładki<br>
+         <input type = "text" name = "cover" value={{ book.cover }} /><br>
+         
+         Język wydania<br>
+         <input type = "text" name = "lang" value={{ book.lang }} /><br><br> 
+      </form>
+   </body>
+</html>

@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>{{ config.SITE_NAME }}</title>
+</head>
+
+<body>
+    <h1>{{ config.SITE_NAME }}:</h1>
+
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+    <div class="alert-message block-message error">
+        <a class="close" href="#">×</a>
+        <ul>
+            {%- for msg in errors %}
+            <li>{{ msg }}</li>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% with successes = get_flashed_messages(category_filter=["success"]) %}
+    {% if successes %}
+    <div class="alert-message block-message success">
+        <a class="close" href="#">×</a>
+        <ul>
+            {%- for msg in successes %}
+            <li>{{ msg }}</li>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    Wróć do strony głównej: <a href="/"> TU </a><br> 
+
+
+    <form action="{{ url_for('dbBooks') }}" method="GET">
+        <h3>Znajdź książki:</h3>
+
+        Tytuł<br>
+        <input type="text" name="title" /></br>
+
+        Autor<br>
+        <input type="text" name="author" /></br>
+
+        Język wydania<br>
+        <input type="text" name="lang" /><br>
+
+        Data publikacji od<br>
+        <input type="date" name="publication_date_from" /></br>
+        Data publikacji do<br>
+        <input type="date" name="publication_date_to" /></br><br>
+
+        <input type="submit" value="submit" /><br>
+    </form>
+
+    <table style="width:100%" border="6">
+
+        <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Data publikacji</th>
+            <th>ISBN</th>
+            <th>Liczba stron</th>
+            <th>Okładka</th>
+            <th>Język</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.title }}</td>
+            <td>{{ entry.author }}</td>
+            <td>{{ entry.publication_date }}</td>
+            <td>{{ entry.ISBN }}</td>
+            <td>{{ entry.pages }}</td>
+            <td><a href={{ entry.cover }}>{{ entry.cover }}</a></td>
+            <td>{{ entry.lang }}</td>
+            <td><a href="{{ url_for('dbBooksEdit', id=entry.id) }}"> Edit </a></td>
+            <td><a href="{{ url_for('dbBooksDelete', id=entry.id) }}"> Remove </a></td>
+        </tr>
+        {% endfor %}
+    </table><br>
+    Wróć do strony głównej: <a href="/"> TU </a>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<html>
+   <body>
+      <form action = "{{ url_for('apiBooks') }}" method = "GET">
+         
+         <h3>Znajdź książki w API Google:</h3>
+         Wróć do strony głównej: <a href="/"> TU </a><br><br> 
+
+         PROSZĘ UZUPEŁNIĆ TYLKO JEDNO POLE<br>
+         W przypadku uzupełnienia większej ilości pól zostanie uwzględnione tylko to najwyżej wypełnione! <br><br>
+
+         Wyszukaj frazę:<br>
+         <input type = "text" name = "api_search_query" /></br>
+         
+         Wyszukaj frazę w polu tytuł:<br>
+         <input type = "text" name = "api_search_query_title" /></br>
+         
+         Wyszukaj frazę w polu autor:<br>
+         <input type = "text" name = "api_search_query_author" /></br><br>
+         
+
+         <input type = "submit" value = "submit" />
+      </form>
+
+      {% if data.books %}
+      <br/>
+      <table style="width:100%" border="6">
+          <tr>
+              <th>Tytuł</th>
+              <th>Autor</th>
+              <th>Data publikacji</th>
+              <th>ISBN</th>
+              <th>Liczba stron</th>
+              <th>Okładka</th>
+              <th>Język</th>
+          </tr>
+  
+          {% for book in data.books %}
+          <tr>
+              <td>{{ book.title }}</td>
+              <td>{{ book.author }}</td>
+              <td>{{ book.publication_date }}</td>
+              <td>{{ book.ISBN }}</td>
+              <td>{{ book.pages }}</td>
+              <td><a href={{ book.cover }}>{{ book.cover }}</a></td>
+              <td>{{ book.lang }}</td>
+          </tr>
+          {% endfor %}
+  
+          </form>
+      </table><br>
+
+        <form action="{{ url_for('dbBooksCreate') }}" method = "POST">
+            <input hidden value='{{ data.stringifiedBooks }}' name="api_books" />
+            <button type="submit">Zaimportuj książki do bazy danych</button>
+        </form>
+  
+      {% else %}
+        {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+   </body>
+</html>

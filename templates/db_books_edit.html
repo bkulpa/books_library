@@ -1,0 +1,38 @@
+<html>
+   <body>
+      <form action = "{{ url_for('dbBooksPatch', id=book.id) }}" method = "POST">
+         <h3>Edytuj istniejący wpis:</h3>
+         Wróć do strony głównej: <a href="/"> TU </a>
+
+         <input type = "hidden" name = "id" value={{ book.id }} /></br></br>
+         
+         Podaj nowe dane książki:</br>
+         (Puste pole = Brak zmian)</br><br>
+
+         ID Książki: {{ book.id }}<br><br>
+
+         Tytuł<br>
+         <input type = "text" name = "title"/></br>
+         
+         Autor<br>
+         <input type = "text" name = "author"/></br>
+
+         Data publikacji<br>
+         <input type = "date" name = "publication_date"/></br>
+         
+         ISBN<br>
+         <input type = "text" name = "ISBN"/><br>
+         
+         Liczba stron<br>
+         <input type = "text" name = "pages"/><br>
+        
+         Link do okładki<br>
+         <input type = "text" name = "cover"/><br>
+         
+         Język wydania<br>
+         <input type = "text" name = "lang"/><br><br>       
+
+         <input type="submit" />
+      </form>
+   </body>
+</html>

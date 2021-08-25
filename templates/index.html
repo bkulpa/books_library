@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>{{ config.SITE_NAME }}</title>
+    </head>
+    <body>
+        <h1>{{ config.SITE_NAME }}:</h1>
+        Lista książkę w bazie: <a href="{{ url_for('dbBooks') }}"> TU </a><br> 
+        Dodaj książkę do bazy ręcznie: <a href="{{ url_for('dbBooksNewManual') }}"> TU </a><br>
+        Znajdź i importuj do bazy książki z Google API: <a href="{{ url_for('apiBooks') }}"> TU </a>
+    </body>
+</html>
